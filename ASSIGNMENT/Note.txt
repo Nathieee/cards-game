@@ -1,0 +1,80 @@
+USING FISHER YATES ALGORITHM
+
+// Initialize variables
+let points = 3;
+let cards = ["word1", "word2", "word3", "word4", "word5", "word6", "word7", "word8", "word9", "word10", "word11", "word12"];
+
+// Shuffle cards using Fisher-Yates algorithm
+for (let i = cards.length - 1; i > 0; i--) {
+  const j = Math.floor(Math.random() * (i + 1));
+  [cards[i], cards[j]] = [cards[j], cards[i]];
+}
+
+// Game loop
+for (let i = 1; i <= 3; i++) {
+  // Display word and prompt player to select a card
+  let word = "word" + i;
+  let cardIndex = prompt(`Round ${i}: ${word}\nSelect a card (1-12): `) - 1;
+
+  // Reveal hidden word in selected card
+  let selectedCard = cards[cardIndex];
+  alert(`You selected ${selectedCard}`);
+
+  // Compare revealed word with displayed word
+  if (selectedCard === word) {
+    alert("You win!");
+    break;
+  } else {
+    points--;
+    alert(`Sorry, that's not the correct word. You have ${points} point(s) left.`);
+  }
+}
+
+// Game over
+if (points === 0) {
+  alert("Game over. You lose!");
+}
+
+
+
+
+
+
+
+WITHOUT FISHER YATES ALGORITHM
+
+// Initialize variables
+let points = 3;
+let cards = ["word1", "word2", "word3", "word4", "word5", "word6", "word7", "word8", "word9", "word10", "word11", "word12"];
+
+// Shuffle cards by swapping random cards 100 times
+for (let i = 0; i < 100; i++) {
+  let index1 = Math.floor(Math.random() * cards.length);
+  let index2 = Math.floor(Math.random() * cards.length);
+  [cards[index1], cards[index2]] = [cards[index2], cards[index1]];
+}
+
+// Game loop
+for (let i = 1; i <= 3; i++) {
+  // Display word and prompt player to select a card
+  let word = "word" + i;
+  let cardIndex = prompt(`Round ${i}: ${word}\nSelect a card (1-12): `) - 1;
+
+  // Reveal hidden word in selected card
+  let selectedCard = cards[cardIndex];
+  alert(`You selected ${selectedCard}`);
+
+  // Compare revealed word with displayed word
+  if (selectedCard === word) {
+    alert("You win!");
+    break;
+  } else {
+    points--;
+    alert(`Sorry, that's not the correct word. You have ${points} point(s) left.`);
+  }
+}
+
+// Game over
+if (points === 0) {
+  alert("Game over. You lose!");
+}
